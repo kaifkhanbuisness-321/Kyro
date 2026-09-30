@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYRO — Premium Fragrance</title>
+    <meta name="description" content="Discover KYRO, a modern fragrance brand created around elegance, character, and unforgettable scent.">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="KYRO — Premium Fragrance">
+    <meta property="og:description" content="A modern fragrance brand combining elegance, character, and lasting impression in every scent.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==========================================================================
+           1. CORE DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
+        :root {
+            --bg-canvas: #ffffff;
+            --text-dark: #0f0f0f;
+            --text-muted: #4a4a4a;
+            --gold-primary: #eab308;
+            --gold-soft-shadow: rgba(234, 179, 8, 0.22);
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-canvas); /* PURE WHITE CANVAS */
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==========================================================================
+           2. REUSABLE ANIMATED YELLOW/GOLDEN TEXT BACKGROUND SYSTEM
+           ========================================================================== */
+        /* Flowing Liquid Yellow Background Animation */
+        @keyframes yellowFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Applied directly behind major titles, tags, and highlights */
+        .animated-yellow-bg {
+            display: inline-block;
+            background: linear-gradient(
+                120deg,
+                #fde047 0%,
+                #facc15 25%,
+                #f59e0b 50%,
+                #facc15 75%,
+                #fde047 100%
+            );
+            background-size: 300% 300%;
+            animation: yellowFlow 6s ease infinite;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px var(--gold-soft-shadow);
+            color: var(--text-dark);
+        }
+
+        /* Subtle variant for long paragraphs & text containers */
+        .animated-yellow-bg-soft {
+            display: inline-block;
+            background: linear-gradient(
+                120deg,
+                rgba(254, 240, 138, 0.4) 0%,
+                rgba(253, 224, 71, 0.55) 35%,
+                rgba(250, 204, 21, 0.45) 70%,
+                rgba(254, 240, 138, 0.4) 100%
+            );
+            background-size: 300% 300%;
+            animation: yellowFlow 7s ease infinite;
+            border-radius: 16px;
+            border: 1px solid rgba(234, 179, 8, 0.25);
+            box-shadow: 0 6px 25px rgba(234, 179, 8, 0.12);
+            backdrop-filter: blur(4px);
+            color: var(--text-dark);
+        }
+
+        /* SECTION HEADING COMPONENT */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 0.5rem 2.25rem;
+            border-radius: 12px;
+        }
+
+        /* ==========================================================================
+           3. NAVIGATION
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.25rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            padding: 0.2rem 0.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-dark);
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gold-primary);
+            transition: width 0.3s var(--transition-smooth);
+        }
+
+        .nav-link:hover::after,
+        .nav-link:focus::after {
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: var(--bg-canvas); /* White canvas */
+            text-align: center;
+        }
+
+        .hero-top-controls {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 6.5rem;
+            z-index: 10;
+        }
+
+        /* Hero Action Buttons */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.4s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--text-dark);
+            color: #ffffff;
+        }
+
+        .btn-whatsapp svg {
+            width: 18px;
+            height: 18px;
+            fill: #25D366;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.25), 0 0 15px var(--gold-soft-shadow);
+        }
+
+        .btn-buy {
+            color: var(--text-dark);
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 30px var(--gold-soft-shadow);
+        }
+
+        /* Main KYRO Heading with Animated Yellow Background Directly Behind Heading Text */
+        .hero-brand-container {
+            margin-top: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-brand-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3.5rem, 11vw, 8.5rem);
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            line-height: 1;
+            padding: 0.2em 0.5em;
+            text-indent: 0.2em;
+            border-radius: 20px;
+        }
+
+        /* Circular Brand Logo Frame */
+        .logo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .circular-logo {
+            width: 150px;
+            height: 150px;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+            padding: 4px;
+            box-shadow: 0 0 35px var(--gold-soft-shadow), 0 0 0 3px var(--gold-primary);
+            transition: transform 0.6s var(--transition-smooth), box-shadow 0.6s ease;
+            animation: subtleFloat 6s infinite alternate ease-in-out;
+        }
+
+        .logo-wrapper:hover .circular-logo {
+            transform: scale(1.06) rotate(2deg);
+            box-shadow: 0 0 50px rgba(234, 179, 8, 0.45), 0 0 0 4px var(--gold-primary);
+        }
+
+        @keyframes subtleFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .hero-tagline {
+            font-size: clamp(0.9rem, 2vw, 1.15rem);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.4rem 1.25rem;
+            border-radius: 30px;
+            margin-top: 0.5rem;
+        }
+
+        /* ==========================================================================
+           5. FOUNDER PERSONAL IMAGE SECTION (1.png)
+           ========================================================================== */
+        .founder-section {
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .founder-image-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.75rem;
+            isolation: isolate;
+        }
+
+        /* Golden Aura Animation Behind 1.png */
+        .founder-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            background: linear-gradient(
+                120deg,
+                #fde047 0%,
+                #facc15 35%,
+                #f59e0b 70%,
+                #fde047 100%
+            );
+            background-size: 200% 200%;
+            animation: yellowFlow 5s ease infinite, auraGlow 4s ease-in-out infinite alternate;
+            z-index: -1;
+            filter: blur(14px);
+            opacity: 0.75;
+        }
+
+        @keyframes auraGlow {
+            0% { transform: scale(0.96); opacity: 0.6; }
+            100% { transform: scale(1.04); opacity: 0.85; }
+        }
+
+        /* Exact 1.png Styling Specs */
+        .founder-image {
+            width: clamp(160px, 25vw, 220px);
+            height: clamp(160px, 25vw, 220px);
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+            box-shadow: 0 10px 30px var(--gold-soft-shadow);
+            transition: transform 0.6s var(--transition-smooth), box-shadow 0.6s ease;
+            animation: founderEntrance 1.2s var(--transition-smooth), founderFloat 7s infinite alternate ease-in-out 1.2s;
+        }
+
+        .founder-image-wrapper:hover .founder-image {
+            transform: scale(1.04);
+            box-shadow: 0 15px 40px rgba(234, 179, 8, 0.4);
+        }
+
+        @keyframes founderEntrance {
+            0% { opacity: 0; transform: translateY(25px) scale(0.92); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes founderFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-8px); }
+        }
+
+        .founder-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .founder-intro-box {
+            padding: 1.75rem 2.25rem;
+            margin-top: 1rem;
+        }
+
+        .founder-intro-text {
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            font-weight: 600;
+            color: var(--text-dark);
+            line-height: 1.8;
+        }
+
+        /* ==========================================================================
+           6. ABOUT SECTION
+           ========================================================================== */
+        .about-section {
+            padding: 5rem 2rem 7rem;
+            max-width: 950px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-paragraph-container {
+            padding: 2.5rem 3rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-text {
+            font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+            line-height: 1.95;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        .about-text strong {
+            font-weight: 800;
+        }
+
+        /* ==========================================================================
+           7. PERFUMES SECTION
+           ========================================================================== */
+        .perfumes-section {
+            padding: 7rem 2rem;
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+
+        .perfume-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .perfume-card {
+            background: var(--bg-canvas);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.5s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .perfume-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--gold-soft-shadow);
+            border-color: var(--gold-primary);
+        }
+
+        .perfume-image-container {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #f7f7f7;
+        }
+
+        .perfume-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s var(--transition-smooth);
+        }
+
+        .perfume-card:hover .perfume-image {
+            transform: scale(1.06);
+        }
+
+        .perfume-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.85rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            border-radius: 20px;
+        }
+
+        .perfume-details {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .perfume-brand-tag {
+            align-self: flex-start;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+
+        .perfume-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .perfume-desc-box {
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.25rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .perfume-notes {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px dashed rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .notes-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .notes-text {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .perfume-card-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .perfume-price {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+        }
+
+        .btn-card-cta {
+            padding: 0.7rem 1.4rem;
+            background: var(--text-dark);
+            color: #ffffff;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .perfume-card:hover .btn-card-cta {
+            background: var(--gold-primary);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px var(--gold-soft-shadow);
+        }
+
+        /* ==========================================================================
+           8. RATING SECTION
+           ========================================================================== */
+        .rating-section {
+            padding: 7rem 2rem;
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .rating-summary {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .stars-container {
+            color: #eab308;
+            font-size: 1.75rem;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+        }
+
+        .score-box {
+            display: inline-block;
+            padding: 0.5rem 1.75rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+        }
+
+        .score-num {
+            font-family: var(--font-heading);
+            font-size: 2.75rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--bg-canvas);
+            padding: 2.25rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+            transition: all 0.4s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--gold-soft-shadow);
+            border-color: var(--gold-primary);
+        }
+
+        .review-text-container {
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .review-author {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 6px;
+            align-self: flex-start;
+        }
+
+        .sample-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2.5rem;
+            font-style: italic;
+        }
+
+        /* ==========================================================================
+           9. CONTACT SECTION
+           ========================================================================== */
+        .contact-section {
+            padding: 7rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--bg-canvas);
+            padding: 3rem 2rem;
+            border-radius: 18px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--gold-soft-shadow);
+            border-color: var(--gold-primary);
+        }
+
+        .contact-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .contact-type {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 800;
+            padding: 0.2rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-val {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 800;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            word-break: break-all;
+        }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: var(--bg-canvas);
+            padding: 5rem 2rem 2.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 0.22em;
+            padding: 0.2em 0.8em;
+            border-radius: 10px;
+        }
+
+        .footer-tagline {
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.3rem 1.25rem;
+            border-radius: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .footer-link {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================================================
+           11. SCROLL REVEAL ANIMATIONS
+           ========================================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           12. RESPONSIVE BREAKPOINTS
+           ========================================================================== */
+        @media (max-width: 1024px) {
+            .perfume-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .hero-top-controls {
+                position: relative;
+                top: 0;
+                width: 100%;
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+                margin-bottom: 2rem;
+                padding: 0;
+            }
+
+            .btn-cta {
+                padding: 0.75rem 1.25rem;
+                font-size: 0.75rem;
+            }
+
+            .founder-intro-box {
+                padding: 1.25rem 1rem;
+            }
+
+            .about-paragraph-container {
+                padding: 1.75rem 1.25rem;
+            }
+
+            .perfume-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ACCESSIBILITY: PREFERS REDUCED MOTION */
+        @media (prefers-reduced-motion: reduce) {
+            .animated-yellow-bg,
+            .animated-yellow-bg-soft,
+            .founder-image-wrapper::before {
+                animation: none !important;
+                background: #fde047 !important;
+            }
+            .founder-image {
+                animation: none !important;
+            }
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            *, ::before, ::after {
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar" aria-label="Main Navigation">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo animated-yellow-bg" aria-label="KYRO Home">KYRO</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#perfumes" class="nav-link">Perfumes</a></li>
+                <li><a href="#rating" class="nav-link">Rating</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="home" class="hero">
+        <!-- Hero Top Controls -->
+        <div class="hero-top-controls">
+            <!-- Left WhatsApp Button -->
+            <a href="https://wa.me/923152043813" target="_blank" rel="noopener noreferrer" class="btn-cta btn-whatsapp" aria-label="Contact KYRO on WhatsApp">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                </svg>
+                <span>WhatsApp</span>
+            </a>
+
+            <!-- Right Buy Me Button with Animated Yellow Background -->
+            <a href="#perfumes" class="btn-cta btn-buy animated-yellow-bg" aria-label="Browse Perfumes Collection">
+                <span>Buy Me</span>
+            </a>
+        </div>
+
+        <!-- Main Heading with Animated Yellow Background Directly Behind Heading Text -->
+        <div class="hero-brand-container">
+            <h1 class="hero-brand-title animated-yellow-bg">KYRO</h1>
+        </div>
+
+       
+
+        <p class="hero-tagline animated-yellow-bg-soft">Modern Luxury Fragrance</p>
+    </header>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+        <div class="section-header reveal">
+            <!-- Animated Yellow Background Behind Heading Text -->
+            <h2 class="section-title animated-yellow-bg">About</h2>
+        </div>
+
+        <!-- Paragraph Container with Subtle Flowing Yellow Background -->
+        <div class="about-paragraph-container animated-yellow-bg-soft reveal">
+            <p class="about-text">
+                Perfume is more than a fragrance — it is an <strong>expression of personality, mood, and identity</strong>. 
+                A carefully crafted scent can become part of the way we remember a moment, a person, or a place. 
+                <strong>KYRO</strong> represents a modern approach to fragrance, combining elegance, character, and lasting impression in every scent.
+            </p>
+        </div>
+    </section>
+
+    <!-- PERFUMES SECTION -->
+    <section id="perfumes" class="perfumes-section">
+        <div class="section-header reveal">
+            <!-- Animated Yellow Background Behind Heading Text -->
+            <h2 class="section-title animated-yellow-bg">Perfumes</h2>
+        </div>
+
+        <div class="perfume-grid">
+            <!-- Product Card 1 -->
+            <article class="perfume-card reveal">
+                <div class="perfume-image-container">
+                    <span class="perfume-badge animated-yellow-bg">Signature</span>
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=800" 
+                         alt="KYRO Noir Eau de Parfum Bottle" 
+                         class="perfume-image"
+                         loading="lazy">
+                </div>
+                <div class="perfume-details">
+                    <span class="perfume-brand-tag animated-yellow-bg">KYRO FRAGRANCE</span>
+                    <h3 class="perfume-title">KYRO Noir</h3>
+                    
+                    <div class="perfume-desc-box animated-yellow-bg-soft">
+                        A deep, seductive blend featuring smoky wood notes paired with warm amber, designed for evening elegance.
+                    </div>
+
+                    <div class="perfume-notes">
+                        <div class="notes-label">Fragrance Notes</div>
+                        <div class="notes-text">Top: Dark Bergamot | Heart: Smoked Oud | Base: Amber & Leather</div>
+                    </div>
+
+                    <div class="perfume-card-action">
+                        <span class="perfume-price animated-yellow-bg">$120</span>
+                        <a href="https://wa.me/923152043813?text=I%20am%20interested%20in%20KYRO%20Noir" target="_blank" rel="noopener noreferrer" class="btn-card-cta">Inquire</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 2 -->
+            <article class="perfume-card reveal">
+                <div class="perfume-image-container">
+                    <span class="perfume-badge animated-yellow-bg">Best Seller</span>
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800" 
+                         alt="KYRO Gold Reserve Eau de Parfum Bottle" 
+                         class="perfume-image"
+                         loading="lazy">
+                </div>
+                <div class="perfume-details">
+                    <span class="perfume-brand-tag animated-yellow-bg">KYRO FRAGRANCE</span>
+                    <h3 class="perfume-title">KYRO Gold Reserve</h3>
+                    
+                    <div class="perfume-desc-box animated-yellow-bg-soft">
+                        An opulent radiance of rich citrus contrast against warm vanilla and golden saffron highlights.
+                    </div>
+
+                    <div class="perfume-notes">
+                        <div class="notes-label">Fragrance Notes</div>
+                        <div class="notes-text">Top: Saffron & Citrus | Heart: Golden Iris | Base: Madagascar Vanilla</div>
+                    </div>
+
+                    <div class="perfume-card-action">
+                        <span class="perfume-price animated-yellow-bg">$145</span>
+                        <a href="https://wa.me/923152043813?text=I%20am%20interested%20in%20KYRO%20Gold%20Reserve" target="_blank" rel="noopener noreferrer" class="btn-card-cta">Inquire</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 3 -->
+            <article class="perfume-card reveal">
+                <div class="perfume-image-container">
+                    <span class="perfume-badge animated-yellow-bg">New Arrival</span>
+                    <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&q=80&w=800" 
+                         alt="KYRO L'Elixir Fragrance Bottle" 
+                         class="perfume-image"
+                         loading="lazy">
+                </div>
+                <div class="perfume-details">
+                    <span class="perfume-brand-tag animated-yellow-bg">KYRO FRAGRANCE</span>
+                    <h3 class="perfume-title">KYRO L'Elixir</h3>
+                    
+                    <div class="perfume-desc-box animated-yellow-bg-soft">
+                        A crisp, invigorating composition balance of vetiver, marine accords, and delicate white cedarwood.
+                    </div>
+
+                    <div class="perfume-notes">
+                        <div class="notes-label">Fragrance Notes</div>
+                        <div class="notes-text">Top: Ocean Breeze | Heart: White Cedar | Base: Vetiver & Musk</div>
+                    </div>
+
+                    <div class="perfume-card-action">
+                        <span class="perfume-price animated-yellow-bg">$135</span>
+                        <a href="https://wa.me/923152043813?text=I%20am%20interested%20in%20KYRO%20L'Elixir" target="_blank" rel="noopener noreferrer" class="btn-card-cta">Inquire</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- RATING SECTION -->
+    <section id="rating" class="rating-section">
+        <div class="section-header reveal">
+            <!-- Animated Yellow Background Behind Heading Text -->
+            <h2 class="section-title animated-yellow-bg">Rating</h2>
+        </div>
+
+        <div class="rating-summary reveal">
+            <div class="stars-container" aria-label="5 out of 5 stars rating">★★★★★</div>
+            <div class="score-box animated-yellow-bg">
+                <div class="score-num">4.9 / 5</div>
+            </div>
+            <div>
+                <span class="score-label animated-yellow-bg-soft" style="padding: 0.3rem 1rem; display: inline-block;">Loved by fragrance enthusiasts</span>
+            </div>
+        </div>
+
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card reveal">
+                <div class="review-text-container animated-yellow-bg-soft">
+                    <p class="review-text">“KYRO Gold Reserve is unmatched in projection and longevity. It has quickly become my true daily signature scent.”</p>
+                </div>
+                <div class="review-author animated-yellow-bg">Alexander M.</div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card reveal">
+                <div class="review-text-container animated-yellow-bg-soft">
+                    <p class="review-text">“The aesthetic, presentation, and depth of the fragrance notes easily rival high-end luxury perfume houses.”</p>
+                </div>
+                <div class="review-author animated-yellow-bg">Sophia R.</div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card reveal">
+                <div class="review-text-container animated-yellow-bg-soft">
+                    <p class="review-text">“KYRO Noir gets me compliments everywhere I go. Sophisticated, bold, and incredibly memorable.”</p>
+                </div>
+                <div class="review-author animated-yellow-bg">David K.</div>
+            </div>
+        </div>
+
+        <p class="sample-note">* Testimonials represent sample customer feedback for display.</p>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div class="section-header reveal">
+            <!-- Animated Yellow Background Behind Heading Text -->
+            <h2 class="section-title animated-yellow-bg">Contact</h2>
+        </div>
+
+        <div class="contact-grid reveal">
+            <!-- WhatsApp Card -->
+            <a href="https://wa.me/923152043813" target="_blank" rel="noopener noreferrer" class="contact-card">
+                <div class="contact-icon animated-yellow-bg" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+                    </svg>
+                </div>
+                <span class="contact-type animated-yellow-bg">WhatsApp</span>
+                <span class="contact-val animated-yellow-bg-soft">03152043813</span>
+            </a>
+
+            <!-- Email Card -->
+            <a href="mailto:kaifkhanbuisness@gmail.com" class="contact-card">
+                <div class="contact-icon animated-yellow-bg" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                </div>
+                <span class="contact-type animated-yellow-bg">Email</span>
+                <span class="contact-val animated-yellow-bg-soft">kaifkhanbuisness@gmail.com</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Animated Yellow Background Behind Footer Brand -->
+            <div class="footer-brand animated-yellow-bg">KYRO</div>
+            <!-- Animated Yellow Background Behind Tagline -->
+            <div class="footer-tagline animated-yellow-bg-soft">A fragrance that becomes your signature.</div>
+            
+            <ul class="footer-links">
+                <li><a href="https://wa.me/923152043813" target="_blank" rel="noopener noreferrer" class="footer-link">WhatsApp</a></li>
+                <li><a href="mailto:kaifkhanbuisness@gmail.com" class="footer-link">Email</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            &copy; <span id="year"></span> KYRO Fragrance. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- INTERACTION SCRIPT -->
+    <script>
+        // Dynamically set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Scroll Reveal Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.12
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            reveals.forEach(element => {
+                revealObserver.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
